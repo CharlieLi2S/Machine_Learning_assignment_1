@@ -248,46 +248,44 @@ def main():
     X_test = np.hstack((X_test, np.ones((X_test.shape[0], 1))))  # 增加偏置项
 
     # TODO
-    #GD不同步长下损失函数随迭代次数的变化(lambda=0)
-    print("GD不同步长下损失函数随迭代次数的变化")
-    plt.figure()
-    for alpha in [0.1, 0.5, 0.05, 0.01]:
-        _, loss_hist = batch_grad_descent(X_train, y_train, 0, alpha)
-        plt.plot(loss_hist, label="alpha="+str(alpha))
-    plt.legend()
-    plt.xlabel("iter"), plt.ylabel("loss")
-    plt.ylim((0,12))    #alpha=0.1或0.5时损失函数发散，限制y轴范围
-    plt.title("loss curve under different alpha in GD (lambda = 0)")
-    plt.savefig("GD不同步长下损失函数随迭代次数的变化.jpg")
+    # #GD不同步长下损失函数随迭代次数的变化(lambda=0)
+    # print("GD不同步长下损失函数随迭代次数的变化")
+    # plt.figure()
+    # for alpha in [0.1, 0.5, 0.05, 0.01]:
+    #     _, loss_hist = batch_grad_descent(X_train, y_train, 0, alpha)
+    #     plt.plot(loss_hist, label="alpha="+str(alpha))
+    # plt.legend()
+    # plt.xlabel("iter"), plt.ylabel("loss")
+    # plt.ylim((0,12))    #alpha=0.1或0.5时损失函数发散，限制y轴范围
+    # plt.title("loss curve under different alpha in GD (lambda = 0)")
+    # plt.savefig("GD不同步长下损失函数随迭代次数的变化.jpg")
 
-    #SGD不同批大小训练曲线发生的变化
-    print("SGD不同批大小训练曲线发生的变化")
-    #plt.figure()
-    alpha_list = [0.01, "0.05/sqrt(t)", "0.05/t"]
-    for batch_size in [1, 5, 10, 20, 50, 100]:
-        plt.figure()
-        for i in range(3):
-            alpha = alpha_list[i]
-            _, loss_hist, validation_hist = stochastic_grad_descent(X_train, y_train, X_test, y_test, 0, alpha=alpha, num_iter=1000, batch_size=batch_size)
-            plt.subplot(1, 2, 1)
-            plt.plot(loss_hist, label="alpha={}".format(alpha))
-            plt.legend()
-            plt.xlabel("iter",loc='right')
-            plt.ylabel("train loss")
-            plt.ylim((0,max(loss_hist)))
-            plt.subplot(1, 2, 2)
-            plt.plot(validation_hist, label="alpha={}".format(alpha))
-            plt.legend()
-            plt.xlabel("iter",loc='right')
-            plt.ylabel("validation loss")
-            plt.ylim((0,max(validation_hist)))
-        plt.suptitle("batch size = {}".format(batch_size))
-        plt.savefig("SGD不同批大小训练曲线发生的变化(batch size={}).jpg".format(batch_size))
-    # plt.draw()
-    # plt.show()
+    # #SGD不同批大小训练曲线发生的变化
+    # print("SGD不同批大小训练曲线发生的变化")
+    # alpha_list = [0.01, "0.05/sqrt(t)", "0.05/t"]
+    # for batch_size in [1, 5, 10, 20, 50, 100]:
+    #     plt.figure()
+    #     for i in range(3):
+    #         alpha = alpha_list[i]
+    #         _, loss_hist, validation_hist = stochastic_grad_descent(X_train, y_train, X_test, y_test, 0, alpha=alpha, num_iter=1000, batch_size=batch_size)
+    #         plt.subplot(1, 2, 1)
+    #         plt.plot(loss_hist, label="alpha={}".format(alpha))
+    #         plt.legend()
+    #         plt.xlabel("iter",loc='right')
+    #         plt.ylabel("train loss")
+    #         plt.ylim((0,max(loss_hist)))
+    #         plt.subplot(1, 2, 2)
+    #         plt.plot(validation_hist, label="alpha={}".format(alpha))
+    #         plt.legend()
+    #         plt.xlabel("iter",loc='right')
+    #         plt.ylabel("validation loss")
+    #         plt.ylim((0,max(validation_hist)))
+    #     plt.suptitle("batch size = {}".format(batch_size))
+    #     plt.savefig("SGD不同批大小训练曲线发生的变化(batch size={}).jpg".format(batch_size))
 
 
-
+    #模型选择：不同正则化参数
+    print("不同正则化参数对结果的影响")
 
 
 
